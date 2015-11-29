@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <link rel="stylesheet" type="text/css" href="lib/css/dropzone.css">
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
   </head>
@@ -14,11 +13,17 @@
     <div id="footer">
     </div>
     <script src="lib/js/dropzone.js"></script>
+
     <script type="text/javascript">
-      var dropzone=document.getElementById("drop");
-      Dropzone.options.dropzone = {
-        maxFilesize: 5
-      };
+      window.Dropzone;
+      Dropzone.autoDiscover = false;
+      //var dropzone=document.getElementById("drop");
+      dropzone = new Dropzone("#drop",{
+        init: function(){
+            this.on("complete", function(file) { this.removeFile(file) });
+         },
+         maxFilesize: 5
+     });
     </script>
   </body>
 </html>
